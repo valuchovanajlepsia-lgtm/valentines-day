@@ -1,45 +1,39 @@
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 
-let noCount = 0;
+function moveNo() {
+  const padding = 20;
 
-function moveNoButton() {
-  noCount++;
-
-  const maxX = window.innerWidth - noBtn.offsetWidth - 20;
-  const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
   const x = Math.random() * maxX;
   const y = Math.random() * maxY;
 
   noBtn.style.left = `${x}px`;
   noBtn.style.top = `${y}px`;
-
-  if (noCount === 5) {
-    noBtn.innerText = "Still no? 😏";
-  }
-  if (noCount === 10) {
-    noBtn.innerText = "You can’t escape 😈";
-  }
-  if (noCount === 15) {
-    noBtn.innerText = "Just say yes 💖";
-  }
 }
 
-// PC – myš
-noBtn.addEventListener("mouseover", moveNoButton);
+// DESKTOP – len prejdeš myšou → uteká
+noBtn.addEventListener("mouseenter", moveNo);
 
-// MOBIL – dotyk
+// MOBIL – len sa priblížiš prstom → uteká
 noBtn.addEventListener("touchstart", (e) => {
   e.preventDefault();
-  moveNoButton();
+  moveNo();
 });
 
-// YES button
+// POISTKA – aj keby sa niečo pokúsilo kliknúť
+noBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  moveNo();
+});
+
+// YES – konfety + presmerovanie
 yesBtn.addEventListener("click", () => {
   confetti({
-    particleCount: 200,
-    spread: 100,
+    particleCount: 250,
+    spread: 120,
     origin: { y: 0.6 }
   });
 
