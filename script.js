@@ -1,6 +1,10 @@
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 
+// štartovacia pozícia
+noBtn.style.left = "50%";
+noBtn.style.top = "60%";
+
 function moveNo() {
   const padding = 20;
 
@@ -14,22 +18,22 @@ function moveNo() {
   noBtn.style.top = `${y}px`;
 }
 
-// DESKTOP – len prejdeš myšou → uteká
+// PC – len prejdem myšou
 noBtn.addEventListener("mouseenter", moveNo);
 
-// MOBIL – len sa priblížiš prstom → uteká
+// MOBIL – len sa dotknem
 noBtn.addEventListener("touchstart", (e) => {
   e.preventDefault();
   moveNo();
 });
 
-// POISTKA – aj keby sa niečo pokúsilo kliknúť
+// poistka – nikdy sa nedá kliknúť
 noBtn.addEventListener("click", (e) => {
   e.preventDefault();
   moveNo();
 });
 
-// YES – konfety + presmerovanie
+// YES
 yesBtn.addEventListener("click", () => {
   confetti({
     particleCount: 250,
