@@ -43,8 +43,8 @@ button {
 #no {
   background: #555;
   color: white;
-  position: absolute;
-  left: 50%;
-  top: 70px;
-  transform: translateX(-50%);
+  #no {
+  position: fixed;
+  background: #555;
+  color: white;
 }
