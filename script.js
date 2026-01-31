@@ -3,11 +3,11 @@ const yesBtn = document.getElementById("yes");
 
 let noCount = 0;
 
-noBtn.addEventListener("click", () => {
+function moveNoButton() {
   noCount++;
 
-  const maxX = window.innerWidth - noBtn.offsetWidth;
-  const maxY = window.innerHeight - noBtn.offsetHeight;
+  const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+  const maxY = window.innerHeight - noBtn.offsetHeight - 20;
 
   const x = Math.random() * maxX;
   const y = Math.random() * maxY;
@@ -15,19 +15,28 @@ noBtn.addEventListener("click", () => {
   noBtn.style.left = `${x}px`;
   noBtn.style.top = `${y}px`;
 
-  if (noCount === 3) {
-    noBtn.innerText = "Are you sure? 😅";
-  }
   if (noCount === 5) {
-    noBtn.innerText = "Last chance 🙃";
+    noBtn.innerText = "Still no? 😏";
   }
-  if (noCount >= 7) {
-    noBtn.style.display = "none";
+  if (noCount === 10) {
+    noBtn.innerText = "You can’t escape 😈";
   }
+  if (noCount === 15) {
+    noBtn.innerText = "Just say yes 💖";
+  }
+}
+
+// PC – myš
+noBtn.addEventListener("mouseover", moveNoButton);
+
+// MOBIL – dotyk
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moveNoButton();
 });
 
+// YES button
 yesBtn.addEventListener("click", () => {
-  // confetti burst
   confetti({
     particleCount: 200,
     spread: 100,
